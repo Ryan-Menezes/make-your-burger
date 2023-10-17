@@ -9,21 +9,21 @@
         <label for="pao">Escolha o pão:</label>
         <select id="pao" name="pao" v-model="pao">
           <option value="">Selecione o seu pão</option>
-          <option value="integral">Integral</option>
+          <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">{{ pao.tipo }}</option>
         </select>
       </div>
       <div class="input-container">
         <label for="carne">Escolha a carne do seu burger:</label>
         <select id="carne" name="carne" v-model="carne">
           <option value="">Selecione o tipo de carne</option>
-          <option value="maminha">Maminha</option>
+          <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">{{ carne.tipo }}</option>
         </select>
       </div>
       <div class="input-container" id="opcionais-container">
         <label for="opcionais" id="opcionais-title">Selecione os opcionais:</label>
-        <div class="checkbox-container">
-          <input type="checkbox" name="opcionais[]" id="salame" v-model="opcionais" value="salame" />
-          <label for="salame">Salame</label>
+        <div class="checkbox-container" v-for="opcional in opcionaisData" :key="opcional.id">
+          <input type="checkbox" name="opcionais[]" :id="opcional.tipo" v-model="opcionais" :value="opcional.tipo" />
+          <label :for="opcional.tipo">{{ opcional.tipo }}</label>
         </div>
       </div>
       <div class="input-container">
@@ -35,7 +35,33 @@
 
 <script>
   export default {
-    name: 'BurgerForm'
+    name: 'BurgerForm',
+    data() {
+      return {
+        paes: null,
+        carnes: null,
+        opcionaisData: null,
+        nome: null,
+        pao: null,
+        carne: null,
+        opcionais: [],
+        status: 'Solicitado',
+        msg: null
+      }
+    },
+    methods: {
+      async getIngredientes() {
+        const response = await fetch('http://localhost:3000/ingredientes')
+        const data = await response.json()
+
+        this.paes = data.paes
+        this.carnes = data.carnes
+        this.opcionaisData = data.opcionais
+      }
+    },
+    mounted() {
+      this.getIngredientes()
+    }
   }
 </script>
 

@@ -1,3 +1,5 @@
 <template>
-  <h1>Pedidos</h1>
+  <main class="main-container">
+    <h1>Pedidos</h1>
+  </main>
 </template>

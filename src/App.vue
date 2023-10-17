@@ -1,10 +1,6 @@
 <template>
   <Navbar :logo="logoSrc" :alt="appName" />
-
-  <main class="main-container">
-    <RouterView />
-  </main>
-
+  <RouterView />
   <Footer />
 </template>
 
@@ -22,7 +18,7 @@
     },
     data() {
       return {
-        appName: 'Make your burger',
+        appName: 'Make Your Burger',
         logoSrc: '/img/logo.png'
       }
     }

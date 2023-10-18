@@ -92,12 +92,11 @@
     },
     {
       "nome": "Paulo",
-      "pao": "Parmesão e Orégano",
+      "pao": "3 Queijos",
       "carne": "Picanha",
       "opcionais": [
-        "Cheddar",
-        "Salame",
-        "Tomate"
+        "Bacon",
+        "Cebola roxa"
       ],
       "status": "Solicitado",
       "id": 2

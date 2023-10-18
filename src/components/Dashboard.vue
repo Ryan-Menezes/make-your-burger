@@ -28,7 +28,7 @@
                 {{ s.tipo }}
               </option>
             </select>
-            <button class="delete-btn">Cancelar</button>
+            <button class="delete-btn" @click="deleteBurger(burger.id)">Cancelar</button>
           </div>
         </div>
       </div>
@@ -58,6 +58,14 @@
         const data = await response.json()
 
         this.status = data
+      },
+      async deleteBurger(id) {
+        const response = await fetch(`http://localhost:3000/burgers/${id}`, {
+          method: 'DELETE'
+        })
+        const data = await response.json()
+
+        this.getPedidos()
       }
     },
     mounted() {

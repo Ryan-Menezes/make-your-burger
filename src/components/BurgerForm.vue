@@ -86,7 +86,6 @@
         const pedido = await response.json();
 
         this.msg = `Pedido Nº ${pedido.id} realizado com sucesso`
-
         setTimeout(() => this.msg = null, 3000)
 
         this.nome = null

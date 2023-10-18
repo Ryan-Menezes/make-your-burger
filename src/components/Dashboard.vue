@@ -23,7 +23,7 @@
             </ul>
           </div>
           <div>
-            <select name="status" class="status">
+            <select name="status" class="status" @change="updateBuger($event, burger.id)">
               <option v-for="s in status" :key="s.id" :value="s.tipo" :selected="burger.status === s.tipo">
                 {{ s.tipo }}
               </option>
@@ -66,6 +66,21 @@
         const data = await response.json()
 
         this.getPedidos()
+      },
+      async updateBuger(e, id) {
+        const status = e.target.value
+
+        const response = await fetch(`http://localhost:3000/burgers/${id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ status }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+
+        const data = await response.json()
+
+        console.log(data)
       }
     },
     mounted() {
